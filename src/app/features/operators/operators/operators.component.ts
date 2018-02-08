@@ -5,8 +5,12 @@ import {Operator} from '../../../shared/models/operator';
   selector: 'app-operators',
   template: `
     <div>
-      Operators Component:
-      {{ operator.name }}
+      Operator Details
+      <div>
+        {{ operator.name }} <br/>
+        {{ operator.category }} <br/>
+        {{ operator.description }} <br/>
+      </div>
     </div>
   `,
   styleUrls: ['./operators.component.scss']
