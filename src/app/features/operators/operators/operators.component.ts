@@ -8,7 +8,7 @@ import {Operator} from '../../../shared/models/operator';
       Operator Details
       <div>
         {{ operator.name }} <br/>
-        {{ operator.category }} <br/>
+        {{ operator.category | uppercase }} <br/>
         {{ operator.description }} <br/>
       </div>
     </div>
