@@ -1,6 +1,6 @@
 // Application wide styles are here.
 
-@import url('https://fonts.googleapis.com/css?family=Khand');
+@import url('https://fonts.googleapis.com/css?family=Khand|Raleway');
 
 * {
   box-sizing: border-box;
@@ -16,4 +16,8 @@ h1 {
   font-family: 'Khand', sans-serif;
   letter-spacing: 2px;
   color: white;
+}
+
+* {
+  font-family: 'Raleway', sans-serif;
 }
