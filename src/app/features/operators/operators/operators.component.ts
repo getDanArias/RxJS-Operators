@@ -9,10 +9,17 @@ import { OPERATORS } from '../../../mock/mock-operators';
     <div>
       <h2>Operators</h2>
       <ul class="operators">
-        <li *ngFor="let operator of operators">
+        <li (click)="onSelect(operator)" *ngFor="let operator of operators">
           {{operator.name}}
         </li>
       </ul>
+
+      <h2>{{ selectedOperator.name | uppercase }}</h2>
+      <div>
+        <span>{{ selectedOperator.category }}</span>
+        <span>{{ selectedOperator.description }}</span>
+      </div>
+
       <h3>New Operator</h3>
       <div>
         <label>
@@ -35,6 +42,11 @@ import { OPERATORS } from '../../../mock/mock-operators';
 export class OperatorsComponent implements OnInit {
 
   operators: Operator[] = OPERATORS;
+  selectedOperator: Operator = {
+    name: ``,
+    category: ``,
+    description: ``
+  };
 
   newOperator: Operator = {
     name: ``,
@@ -45,6 +57,10 @@ export class OperatorsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelect(operator: Operator) {
+    this.selectedOperator = operator;
   }
 
 }
