@@ -35,4 +35,9 @@ export const OPERATORS: Operator[] = [
     category: categories.filtering,
     description: `emit only those items from an Observable that pass a predicate test`
   },
+  {
+    name: `Map`,
+    category: categories.transforming,
+    description: `transform the items emitted by an Observable by applying a function to each item`
+  }
 ];

@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {Operator} from '../../../shared/models/operator';
+import { Operator } from '../../../shared/models/operator';
+
+import { OPERATORS } from '../../../mock/mock-operators';
 
 @Component({
   selector: 'app-operators',
   template: `
     <div>
-      <h3>Operator Details</h3>
-      <div>
-        {{ operator.name }} <br/>
-        {{ operator.category | uppercase }} <br/>
-        {{ operator.description }} <br/>
-      </div>
+      <h2>Operators</h2>
+      <ul class="operators">
+        <li *ngFor="let operator of operators">
+          {{operator.name}}
+        </li>
+      </ul>
       <h3>New Operator</h3>
       <div>
         <label>
@@ -32,11 +34,7 @@ import {Operator} from '../../../shared/models/operator';
 })
 export class OperatorsComponent implements OnInit {
 
-  operator: Operator = {
-    name: `map`,
-    category: `transforming`,
-    description: `transform the items emitted by an Observable by applying a function to each item`
-  };
+  operators: Operator[] = OPERATORS;
 
   newOperator: Operator = {
     name: ``,
