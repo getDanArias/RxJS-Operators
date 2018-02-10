@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Operator } from '../../../shared/models/operator';
 
-import { CATEGORIES } from '../../../mock/mock-operators';
+import { CategoryDataService } from '../../../core/services/category-data.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-operators',
@@ -11,8 +12,9 @@ import { CATEGORIES } from '../../../mock/mock-operators';
       <div class="categories">
         <li
           [ngClass]="{'category-item': true, 'active': selectedCategory === category}"
-          (click)="onSelect(category)" *ngFor="let category of categories">
-          {{category}}
+          (click)="onSelect(category)" *ngFor="let category of (categoryCount$ | async) ">
+          {{category.name}}
+          {{category.count}}
         </li>
       </div>
 
@@ -37,8 +39,8 @@ import { CATEGORIES } from '../../../mock/mock-operators';
 })
 export class OperatorsComponent implements OnInit {
 
-  categories: string[] = Object.values(CATEGORIES);
   selectedCategory = '';
+  categoryCount$: Observable<{name: string, count: number}[]>;
 
   newOperator: Operator = {
     name: ``,
@@ -46,9 +48,10 @@ export class OperatorsComponent implements OnInit {
     description: ``
   };
 
-  constructor() { }
+  constructor(private categoryData: CategoryDataService) { }
 
   ngOnInit() {
+    this.categoryCount$ = this.categoryData.getOperatorCountPerCategory();
   }
 
   onSelect(category: string) {
