@@ -14,8 +14,10 @@ import 'rxjs/add/operator/share';
         <div class="categories">
           <h2 class="category-header">Operators Categories</h2>
           <div
-            [ngClass]="{'category-item': true, 'active': selectedCategory === category}"
-            (click)="onSelect(category)" *ngFor="let category of categoryPairsData">
+            class="category-item"
+            *ngFor="let category of categoryPairsData"
+            [class.active]="selectedCategory === category"
+            (click)="onSelect(category)">
             <span>{{ category[1].name }}</span>
             <span>{{ getSize(category[1].operators) }}</span>
           </div>
