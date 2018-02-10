@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Operator } from '../../../shared/models/operator';
 
 import { CategoryDataService } from '../../../core/services/category-data.service';
-import 'rxjs/add/operator/share';
-
+import { Category } from '../../../mock/mock-operators';
 
 @Component({
   selector: 'app-operators',
@@ -11,23 +9,25 @@ import 'rxjs/add/operator/share';
     <div>
 
       <div class="categories">
-        <ng-container *ngIf="categoryPairs$ | async as categoryPairsData">
+        <ng-container *ngIf="categories$ | async as categoryData">
           <div class="category-list">
             <h2 class="category-list-header">Operators Categories</h2>
             <div
               class="category-item"
-              *ngFor="let category of categoryPairsData"
-              [class.active]="selectedCategory === category"
-              (click)="onSelect(category)">
-              <span>{{ category[1].name }}</span>
-              <span>{{ getSize(category[1].operators) }}</span>
+              *ngFor="let category of categoryData"
+              [class.active]="selectedCategory === category.id"
+              (click)="onSelect($event, category)">
+              <span>{{ category.name }}</span>
+              <span>{{ getObjectKeys(category.operators).length }}</span>
             </div>
             <div class="category">
             </div>
           </div>
           <div *ngIf="selectedCategory" class="category-details">
             <h2 class="category-details-header">Operators</h2>
-            {{selectedCategory}}
+            <div class="category-item" *ngFor="let operator of selectedCategoryOperators">
+            {{ operator }}
+            </div>
           </div>
         </ng-container>
       </div>
@@ -57,25 +57,27 @@ import 'rxjs/add/operator/share';
 })
 export class OperatorsComponent implements OnInit {
 
-  selectedCategory = '';
-  categoryPairs$;
+  selectedCategory: Category;
+  selectedCategoryOperators: string[];
+  categories$;
 
-  newOperator: Operator = {
+  newOperator: {name: string, category: string, description: string} = {
     name: ``,
     category: ``,
     description: ``
   };
 
-  constructor(private categoryData: CategoryDataService) { }
+  constructor(private categoryDataService: CategoryDataService) { }
 
-  getSize = (object) => object === undefined ? 0 : Object.keys(object).length;
+  getObjectKeys = (object) => object === undefined ? [] : Object.keys(object);
 
   ngOnInit() {
-    this.categoryPairs$ = this.categoryData.getOperatorCountPerCategory();
+    this.categories$ = this.categoryDataService.getCategories();
   }
 
-  onSelect(category: string) {
-    this.selectedCategory = category;
+  onSelect(event, category) {
+    this.selectedCategory = category.id;
+    this.selectedCategoryOperators = [...Array.from(Object.keys(category.operators))];
   }
 
 }

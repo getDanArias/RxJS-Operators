@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toArray';
 import 'rxjs/add/observable/pairs';
+import 'rxjs/add/observable/from';
 
 
 @Injectable()
@@ -14,9 +15,5 @@ export class CategoryDataService {
     this.categories = getCategories();
   }
 
-  getOperatorCountPerCategory = () => {
-    const categories$ = Observable.pairs(this.categories);
-
-    return categories$.toArray();
-  }
+  getCategories = () => Observable.from([Array.from(Object.values(this.categories))]);
 }

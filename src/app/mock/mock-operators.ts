@@ -1,26 +1,39 @@
-interface State {
-  'categories': {
-    [key: string]: {
-      name: string,
-      operators: {
-        [key: string]: boolean
-      }
-    }
-  };
-  'operators': {
-    [key: string]: {
-      name: string,
-      description: string,
-      categories: {
-        [key: string]: boolean
-      }
-    }
+export interface CategoryOperator {
+  [key: string]: boolean;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  operators: CategoryOperator;
+}
+
+interface Operator {
+  id: string;
+  name: string;
+  description: string;
+  categories: {
+    [key: string]: boolean
   };
 }
 
+interface CategoriesState {
+  [key: string]: Category;
+}
+
+interface OperatorsState {
+  [key: string]: Operator;
+}
+
+interface State {
+  'categories': CategoriesState;
+  'operators': OperatorsState;
+}
+
 const STATE: State = {
-  'categories': {
+  categories: {
     'creating': {
+      id: 'creating',
       name: 'Creating',
       operators: {
         'create': true,
@@ -28,6 +41,7 @@ const STATE: State = {
       }
     },
     'transforming': {
+      id: 'transforming',
       name: 'Transforming',
       operators: {
         'scan': true,
@@ -35,43 +49,55 @@ const STATE: State = {
       }
     },
     'filtering': {
+      id: 'filtering',
       name: 'Filtering',
       operators: {
         'filter': true
       }
-    }
+    },
+    'aggregating': {
+      id: 'aggregating',
+      name: 'Aggregating',
+      operators: {
+      }
+    },
   },
-  'operators': {
+  operators: {
     'create': {
-      name: 'Create',
+      id: 'create',
+      name: 'create',
       description: 'create an Observable from scratch by calling observer methods programmatically',
       categories: {
         'creating': true
       }
     },
     'from': {
-      name: 'From',
+      id: 'from',
+      name: 'from',
       description: 'convert some other object or data structure into an Observable',
       categories: {
         'creating': true
       }
     },
     'map': {
-      name: 'Map',
+      id: 'map',
+      name: 'map',
       description: 'transform the items emitted by an Observable by applying a function to each item',
       categories: {
         'transforming': true
       }
     },
     'scan': {
-      name: 'Scan',
+      id: 'scan',
+      name: 'scan',
       description: 'apply a function to each item emitted by an Observable, sequentially, and emit each successive value',
       categories: {
         'transforming': true
       }
     },
     'filter': {
-      name: 'Filter',
+      id: 'filter',
+      name: 'filter',
       description: 'emit only those items from an Observable that pass a predicate test',
       categories: {
         'filtering': true
@@ -81,5 +107,5 @@ const STATE: State = {
 };
 
 export const getCategories = () => {
-  return STATE['categories'];
+  return STATE.categories;
 };
