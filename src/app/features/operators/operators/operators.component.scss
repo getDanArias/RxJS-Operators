@@ -9,6 +9,14 @@ li {
   user-select: none;
 }
 
+h2.category-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+
+  background: #00A374;
+}
+
 .category-item {
   display: flex;
   justify-content: space-between;

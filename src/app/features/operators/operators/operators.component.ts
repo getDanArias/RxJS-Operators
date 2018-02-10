@@ -11,9 +11,8 @@ import 'rxjs/add/operator/share';
     <div>
 
       <ng-container *ngIf="categoryPairs$ | async as categoryPairsData">
-        <h2>Operators Categories</h2>
-
         <div class="categories">
+          <h2 class="category-header">Operators Categories</h2>
           <div
             [ngClass]="{'category-item': true, 'active': selectedCategory === category}"
             (click)="onSelect(category)" *ngFor="let category of categoryPairsData">
