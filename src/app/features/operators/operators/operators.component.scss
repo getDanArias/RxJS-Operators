@@ -23,12 +23,14 @@ h2.category-list-header {
   background: #00A374;
 }
 
-.category-item {
+.category-item, .operator-item {
   display: flex;
   justify-content: space-between;
   padding: 1em;
   cursor: pointer;
   background: white;
+
+  user-select: none;
 }
 
 .category-item:not(.active):hover {
@@ -38,6 +40,16 @@ h2.category-list-header {
 
 .active{
   background: #0985B0;
+  color: white;
+}
+
+.operator-item:not(.activeOperator):hover {
+  color: #FF5F00;
+  font-weight: bolder;
+}
+
+.activeOperator{
+  background: #FF5F00;
   color: white;
 }
 
