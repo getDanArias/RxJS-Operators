@@ -34,3 +34,31 @@ h2.category-header {
   background: #0985B0;
   color: white;
 }
+
+.add-operator {
+  margin: 2em 0;
+}
+
+.add-operator-form {
+  width: 50%;
+  label {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bolder;
+    height: 2.5em;
+    margin: 1em 0.5em;
+
+    span {
+      flex: 1;
+    }
+
+    input {
+      flex: 3;
+      height: 100%;
+      padding: 1em;
+      font-size: 100%;
+      outline: none;
+    }
+  }
+}

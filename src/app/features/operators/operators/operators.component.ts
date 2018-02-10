@@ -24,20 +24,24 @@ import 'rxjs/add/operator/share';
         </div>
       </ng-container>
 
-      <h3>New Operator</h3>
-      <div>
-        <label>
-          name: <input [(ngModel)]="newOperator.name"/><br/>
-        </label>
-        <label>
-          category: <input [(ngModel)]="newOperator.category"/><br/>
-        </label>
-        <label>
-          description: <input [(ngModel)]="newOperator.description"/>
-        </label>
-      </div>
-      <div>
-        {{newOperator | json}}
+      <div class="add-operator">
+        <h3>Add Operator</h3>
+        <div class="add-operator-form">
+          <label>
+            <span>Name</span>
+            <input [(ngModel)]="newOperator.name"/><br/>
+          </label>
+          <label>
+            <span>Category</span>
+            <input [(ngModel)]="newOperator.category"/><br/>
+          </label>
+          <label>
+            <span>Description</span>
+            <input [(ngModel)]="newOperator.description"/>
+          </label>
+        </div>
+        <div>
+        </div>
       </div>
     </div>
   `,
