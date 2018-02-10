@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
-  title = 'Data Treatment Plant';
+  title = 'RxJS: Data Treatment Plant';
 }
