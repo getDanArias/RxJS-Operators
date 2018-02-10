@@ -1,3 +1,26 @@
 li {
   list-style: none;
 }
+
+.categories {
+  width: 30%;
+  border-radius: 10px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.category-item {
+  padding: 1em;
+  cursor: pointer;
+  background: white;
+}
+
+.category-item:not(.active):hover {
+  color: #0985B0;
+  font-weight: bolder;
+}
+
+.active{
+  background: #0985B0;
+  color: white;
+}

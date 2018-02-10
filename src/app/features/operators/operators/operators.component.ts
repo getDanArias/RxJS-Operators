@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Operator } from '../../../shared/models/operator';
 
-import { OPERATORS } from '../../../mock/mock-operators';
+import { CATEGORIES } from '../../../mock/mock-operators';
 
 @Component({
   selector: 'app-operators',
   template: `
     <div>
-      <h2>Operators</h2>
-      <ul class="operators">
-        <li (click)="onSelect(operator)" *ngFor="let operator of operators">
-          {{operator.name}}
+      <h2>Operators Categories</h2>
+      <div class="categories">
+        <li
+          [ngClass]="{'category-item': true, 'active': selectedCategory === category}"
+          (click)="onSelect(category)" *ngFor="let category of categories">
+          {{category}}
         </li>
-      </ul>
-
-      <h2>{{ selectedOperator.name | uppercase }}</h2>
-      <div>
-        <span>{{ selectedOperator.category }}</span>
-        <span>{{ selectedOperator.description }}</span>
       </div>
 
       <h3>New Operator</h3>
@@ -41,12 +37,8 @@ import { OPERATORS } from '../../../mock/mock-operators';
 })
 export class OperatorsComponent implements OnInit {
 
-  operators: Operator[] = OPERATORS;
-  selectedOperator: Operator = {
-    name: ``,
-    category: ``,
-    description: ``
-  };
+  categories: string[] = Object.values(CATEGORIES);
+  selectedCategory = '';
 
   newOperator: Operator = {
     name: ``,
@@ -59,8 +51,8 @@ export class OperatorsComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelect(operator: Operator) {
-    this.selectedOperator = operator;
+  onSelect(category: string) {
+    this.selectedCategory = category;
   }
 
 }
