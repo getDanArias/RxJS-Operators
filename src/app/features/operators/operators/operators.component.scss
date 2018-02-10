@@ -3,13 +3,19 @@ li {
 }
 
 .categories {
-  width: 30%;
+  display: flex;
+  width: 100%;
+}
+
+.category-list {
+  flex: 1;
+  max-width: calc(50% - 2em);
   border-radius: 10px;
   overflow: hidden;
   user-select: none;
 }
 
-h2.category-header {
+h2.category-list-header {
   display: flex;
   justify-content: space-between;
   padding: 1em;
@@ -33,6 +39,24 @@ h2.category-header {
 .active{
   background: #0985B0;
   color: white;
+}
+
+.category-details {
+  background: white;
+  flex: 1;
+  margin-left: 2em;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+h2.category-details-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+
+  background: #0985B0;
 }
 
 .add-operator {

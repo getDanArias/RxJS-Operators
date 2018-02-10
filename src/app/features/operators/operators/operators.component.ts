@@ -10,21 +10,27 @@ import 'rxjs/add/operator/share';
   template: `
     <div>
 
-      <ng-container *ngIf="categoryPairs$ | async as categoryPairsData">
-        <div class="categories">
-          <h2 class="category-header">Operators Categories</h2>
-          <div
-            class="category-item"
-            *ngFor="let category of categoryPairsData"
-            [class.active]="selectedCategory === category"
-            (click)="onSelect(category)">
-            <span>{{ category[1].name }}</span>
-            <span>{{ getSize(category[1].operators) }}</span>
+      <div class="categories">
+        <ng-container *ngIf="categoryPairs$ | async as categoryPairsData">
+          <div class="category-list">
+            <h2 class="category-list-header">Operators Categories</h2>
+            <div
+              class="category-item"
+              *ngFor="let category of categoryPairsData"
+              [class.active]="selectedCategory === category"
+              (click)="onSelect(category)">
+              <span>{{ category[1].name }}</span>
+              <span>{{ getSize(category[1].operators) }}</span>
+            </div>
+            <div class="category">
+            </div>
           </div>
-          <div class="category">
+          <div *ngIf="selectedCategory" class="category-details">
+            <h2 class="category-details-header">Operators</h2>
+            {{selectedCategory}}
           </div>
-        </div>
-      </ng-container>
+        </ng-container>
+      </div>
 
       <div class="add-operator">
         <h3>Add Operator</h3>
