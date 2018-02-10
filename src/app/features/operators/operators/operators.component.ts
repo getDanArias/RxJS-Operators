@@ -2,21 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { Operator } from '../../../shared/models/operator';
 
 import { CategoryDataService } from '../../../core/services/category-data.service';
-import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/share';
+
 
 @Component({
   selector: 'app-operators',
   template: `
     <div>
-      <h2>Operators Categories</h2>
-      <div class="categories">
-        <li
-          [ngClass]="{'category-item': true, 'active': selectedCategory === category}"
-          (click)="onSelect(category)" *ngFor="let category of (categoryCount$ | async) ">
-          {{category.name}}
-          {{category.count}}
-        </li>
-      </div>
+
+      <ng-container *ngIf="categoryPairs$ | async as categoryPairsData">
+        <h2>Operators Categories</h2>
+
+        <div class="categories">
+          <div
+            [ngClass]="{'category-item': true, 'active': selectedCategory === category}"
+            (click)="onSelect(category)" *ngFor="let category of categoryPairsData">
+            <span>{{ category[1].name }}</span>
+            <span>{{ getSize(category[1].operators) }}</span>
+          </div>
+          <div class="category">
+          </div>
+        </div>
+      </ng-container>
 
       <h3>New Operator</h3>
       <div>
@@ -40,7 +47,7 @@ import { Observable } from 'rxjs/Observable';
 export class OperatorsComponent implements OnInit {
 
   selectedCategory = '';
-  categoryCount$: Observable<{name: string, count: number}[]>;
+  categoryPairs$;
 
   newOperator: Operator = {
     name: ``,
@@ -50,8 +57,10 @@ export class OperatorsComponent implements OnInit {
 
   constructor(private categoryData: CategoryDataService) { }
 
+  getSize = (object) => object === undefined ? 0 : Object.keys(object).length;
+
   ngOnInit() {
-    this.categoryCount$ = this.categoryData.getOperatorCountPerCategory();
+    this.categoryPairs$ = this.categoryData.getOperatorCountPerCategory();
   }
 
   onSelect(category: string) {
