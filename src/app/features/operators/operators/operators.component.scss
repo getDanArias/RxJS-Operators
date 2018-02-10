@@ -2,7 +2,7 @@ li {
   list-style: none;
 }
 
-.categories {
+.categories, .data-interaction {
   display: flex;
   width: 100%;
 }
@@ -72,14 +72,20 @@ h2.category-details-header {
 }
 
 .add-operator {
+  flex: 1;
+  max-width: calc(50% - 2em);
   margin: 2em 0;
 }
 
 .add-operator-form {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+
   label {
+    flex: 1;
     display: flex;
     align-items: center;
+
     color: white;
     font-weight: bolder;
     height: 2.5em;
@@ -87,6 +93,7 @@ h2.category-details-header {
 
     span {
       flex: 1;
+      min-width: 90px;
     }
 
     input {
@@ -99,4 +106,22 @@ h2.category-details-header {
       outline: none;
     }
   }
+}
+
+.display-operator {
+  flex: 1;
+  background: white;
+  margin: 2em 0 2em 2em;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+h2.display-operator-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+
+  background: #FF5F00;
 }

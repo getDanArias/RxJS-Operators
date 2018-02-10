@@ -34,24 +34,28 @@ import { Category } from '../../../mock/mock-operators';
           </div>
         </ng-container>
       </div>
-
-      <div class="add-operator">
-        <h3>Add Operator</h3>
-        <div class="add-operator-form">
-          <label>
-            <span>Name</span>
-            <input [(ngModel)]="newOperator.name"/><br/>
-          </label>
-          <label>
-            <span>Category</span>
-            <input [(ngModel)]="newOperator.category"/><br/>
-          </label>
-          <label>
-            <span>Description</span>
-            <input [(ngModel)]="newOperator.description"/>
-          </label>
+      <div class="data-interaction">
+        <div class="add-operator">
+          <h3>Add Operator</h3>
+          <div class="add-operator-form">
+            <label>
+              <span>Name</span>
+              <input size="1" [(ngModel)]="newOperator.name"/><br/>
+            </label>
+            <label>
+              <span>Category</span>
+              <input size="1" [(ngModel)]="newOperator.category"/><br/>
+            </label>
+            <label>
+              <span>Description</span>
+              <input size="1" [(ngModel)]="newOperator.description"/>
+            </label>
+          </div>
+          <div>
+          </div>
         </div>
-        <div>
+        <div *ngIf="selectedOperator" class="display-operator">
+          <h2 class="display-operator-header">{{ selectedOperator }}</h2>
         </div>
       </div>
     </div>
