@@ -35,10 +35,10 @@ import { Category } from '../../../mock/mock-operators';
         </ng-container>
       </div>
       <div class="data-interaction">
-        <div class="add-operator-container">
+        <div class="panel-container">
           <app-add-operator [newOperator]="newOperator"></app-add-operator>
         </div>
-        <div class="display-operator-container" *ngIf="selectedOperator.id">
+        <div class="panel-container" *ngIf="selectedOperator.id">
           <app-operator-display-panel
             [operator]="selectedOperator">
           </app-operator-display-panel>
