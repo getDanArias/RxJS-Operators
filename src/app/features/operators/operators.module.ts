@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OperatorDisplayPanelComponent } from './components/operator-display-panel/operator-display-panel.component';
 import { OperatorsComponent } from './operators/operators.component';
 import { FormsModule } from '@angular/forms';
+import { AddOperatorComponent } from './components/add-operator/add-operator.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   ],
   declarations: [
     OperatorsComponent,
-    OperatorDisplayPanelComponent
+    OperatorDisplayPanelComponent,
+    AddOperatorComponent
   ],
   exports: [OperatorsComponent]
 })
