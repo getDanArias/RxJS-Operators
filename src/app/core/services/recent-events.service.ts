@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class RecentEventsService {
 
-  private recentlyVisited: string[];
+  private recentlyVisited: string[] =[];
 
   constructor() { }
 
