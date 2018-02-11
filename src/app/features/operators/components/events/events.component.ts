@@ -4,7 +4,7 @@ import { RecentEventsService } from '../../../../core/services/recent-events.ser
 @Component({
   selector: 'app-events',
   template: `
-    <div>
+    <div *ngIf="events.length > 0">
       <app-list listTitle="Recently Visited" [headerHexColor]="headerHexColor">
         <app-list-item *ngFor="let event of events" [name]="event"></app-list-item>
       </app-list>
