@@ -37,7 +37,9 @@ const STATE: State = {
       name: 'Creating',
       operators: {
         'create': true,
-        'from': true
+        'from': true,
+        'start': true,
+        'range': true
       }
     },
     'transforming': {
@@ -101,6 +103,22 @@ const STATE: State = {
       description: 'emit only those items from an Observable that pass a predicate test',
       categories: {
         'filtering': true
+      }
+    },
+    'start': {
+      id: 'start',
+      name: 'start',
+      description: 'create an Observable that emits the return value of a function',
+      categories: {
+        'creating': true
+      }
+    },
+    'range': {
+      id: 'range',
+      name: 'range',
+      description: 'create an Observable that emits a range of sequential integers',
+      categories: {
+        'creating': true
       }
     }
   }
