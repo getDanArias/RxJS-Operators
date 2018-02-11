@@ -1,15 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RecentEventsService } from '../../../../core/services/recent-events.service';
 
 @Component({
   selector: 'app-events',
   template: `
     <div>
       <app-list listTitle="Recently Visited" [headerHexColor]="headerHexColor">
-        <app-list-item [name]="'map'"></app-list-item>
-        <app-list-item [name]="'scan'"></app-list-item>
-        <app-list-item [name]="'filter'"></app-list-item>
-        <app-list-item [name]="'from'"></app-list-item>
-        <app-list-item [name]="'create'"></app-list-item>
+        <app-list-item *ngFor="let event of events" [name]="event"></app-list-item>
       </app-list>
     </div>
   `,
@@ -20,9 +17,17 @@ export class EventsComponent implements OnInit {
   @Input() title: string;
   @Input() headerHexColor: string;
 
-  constructor() { }
+  events: string[] = [];
+
+  constructor(private recentEventsService: RecentEventsService) { }
 
   ngOnInit() {
+    this.recentEventsService.getRecentlyVisited()
+      .subscribe((event: string) => {
+        const _events = this.events.filter(e => e !== event).splice(0, 4);
+        _events.unshift(event);
+        this.events = [..._events];
+      });
   }
 
 }

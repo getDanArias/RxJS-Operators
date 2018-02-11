@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class RecentEventsService {
 
-  private recentlyVisited: string[] =[];
+  recentlyVisited: string[] = [];
+
+  recentlyVisitedStream = new Subject();
 
   constructor() { }
 
   addRecentlyVisited(visit: string) {
     this.recentlyVisited.push(visit);
+    this.recentlyVisitedStream.next(visit);
   }
 
   getRecentlyVisited() {
-    return Observable.from(this.recentlyVisited);
+    return this.recentlyVisitedStream;
   }
 
 }

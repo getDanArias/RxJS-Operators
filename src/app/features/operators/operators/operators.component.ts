@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CategoryDataService } from '../../../core/services/category-data.service';
 import { Category } from '../../../mock/mock-operators';
+import { RecentEventsService } from '../../../core/services/recent-events.service';
 
 @Component({
   selector: 'app-operators',
@@ -71,7 +72,10 @@ export class OperatorsComponent implements OnInit {
     description: ``
   };
 
-  constructor(private categoryDataService: CategoryDataService) { }
+  constructor(
+    private categoryDataService: CategoryDataService,
+    private recentEventsService: RecentEventsService
+  ) { }
 
   getObjectKeys = (object) => object === undefined ? [] : Object.keys(object);
 
@@ -86,6 +90,7 @@ export class OperatorsComponent implements OnInit {
 
   onSelectOperator(operator) {
     this.selectedOperator = this.categoryDataService.getOperator(operator);
+    this.recentEventsService.addRecentlyVisited(operator);
   }
 
 }
