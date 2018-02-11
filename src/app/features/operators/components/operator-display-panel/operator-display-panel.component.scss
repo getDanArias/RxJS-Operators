@@ -1,0 +1,20 @@
+.display-operator {
+  background: white;
+  margin: 2em 0;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+h2.display-operator-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+
+  background: #FF5F00;
+}
+
+.display-operator-details {
+  padding: 2em;
+}

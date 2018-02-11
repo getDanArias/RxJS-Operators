@@ -54,11 +54,10 @@ import { Category } from '../../../mock/mock-operators';
           <div>
           </div>
         </div>
-        <div *ngIf="selectedOperator.id" class="display-operator">
-          <h2 class="display-operator-header">{{ selectedOperator.name }}</h2>
-          <div class="display-operator-details">
-            {{ selectedOperator.description }}
-          </div>
+        <div class="display-operator-container" *ngIf="selectedOperator.id">
+          <app-operator-display-panel
+            [operator]="selectedOperator">
+          </app-operator-display-panel>
         </div>
       </div>
     </div>

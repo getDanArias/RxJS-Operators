@@ -4,7 +4,13 @@ li {
 
 .categories, .data-interaction {
   display: flex;
+  flex-direction: row;
   width: 100%;
+}
+
+.display-operator-container {
+  width: 50%;
+  margin-left: 2em;
 }
 
 .category-list {
@@ -106,26 +112,4 @@ h2.category-details-header {
       outline: none;
     }
   }
-}
-
-.display-operator {
-  flex: 1;
-  background: white;
-  margin: 2em 0 2em 2em;
-
-  border-radius: 10px;
-
-  overflow: hidden;
-}
-
-h2.display-operator-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-
-  background: #FF5F00;
-}
-
-.display-operator-details {
-  padding: 2em;
 }
