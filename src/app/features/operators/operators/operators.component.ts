@@ -9,26 +9,28 @@ import { Category } from '../../../mock/mock-operators';
     <div>
       <div class="categories">
         <ng-container *ngIf="categories$ | async as categoryData">
-          <div class="category-list">
-            <h2 class="category-list-header">Operators Categories</h2>
-            <app-list-item
-              *ngFor="let category of categoryData"
-              (click)="onSelectCategory(category)"
-              [type]="'category'"
-              [active]="selectedCategory === category.id"
-              [name]="category.name"
-              [count]="getObjectKeys(category.operators).length"
-            ></app-list-item>
+          <div class="panel-container">
+            <app-list listTitle="Operators Categories" kind="category">
+              <app-list-item
+                *ngFor="let category of categoryData"
+                (click)="onSelectCategory(category)"
+                [type]="'category'"
+                [active]="selectedCategory === category.id"
+                [name]="category.name"
+                [count]="getObjectKeys(category.operators).length"
+              ></app-list-item>
+            </app-list>
           </div>
-          <div *ngIf="selectedCategory" class="category-details">
-            <h2 class="category-details-header">Operators</h2>
-            <app-list-item
-              *ngFor="let operator of selectedCategoryOperators"
-              (click)="onSelectOperator(operator)"
-              [type]="'operator'"
-              [active]="selectedOperator.id === operator"
-              [name]="operator"
-            ></app-list-item>
+          <div class="panel-container">
+            <app-list *ngIf="selectedCategory" listTitle="Operators" kind="operator">
+              <app-list-item
+                *ngFor="let operator of selectedCategoryOperators"
+                (click)="onSelectOperator(operator)"
+                [type]="'operator'"
+                [active]="selectedOperator.id === operator"
+                [name]="operator"
+              ></app-list-item>
+            </app-list>
           </div>
         </ng-container>
       </div>
