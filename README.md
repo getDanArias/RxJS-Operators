@@ -1,4 +1,18 @@
-# DataTreatmentPlant
+# RxJS Operators
+
+Angular code sample to demostrate:
+* Component architecture
+* Component reusability
+* Data normalization
+* State management
+* Functional and reactive programming.
+* RxJS data streams for hydration. 
+* Failure mitigation through static typing.
+* Stylesheet theming.
+* CSS encapsulation. 
+* Responsive layout.
+* Git hygiene. 
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
