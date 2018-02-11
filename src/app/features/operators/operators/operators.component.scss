@@ -8,3 +8,7 @@
 .panel-container {
   width: calc(50% - 1em);
 }
+
+.panel-container-small {
+  width: calc((100% / 3) - 1em);
+}
