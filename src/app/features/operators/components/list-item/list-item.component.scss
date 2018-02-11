@@ -1,3 +1,5 @@
+@import "../../../../shared/styles/theme";
+
 .category-item, .operator-item {
   display: flex;
   justify-content: space-between;
@@ -9,21 +11,21 @@
 }
 
 .category-item:not(.active):hover {
-  color: #0985B0;
+  color: $rxcolor_core;
   font-weight: bolder;
 }
 
 .active{
-  background: #0985B0;
+  background: $rxcolor_core;
   color: white;
 }
 
 .operator-item:not(.activeOperator):hover {
-  color: #FF5F00;
+  color: $rxcolor_accent;
   font-weight: bolder;
 }
 
 .activeOperator{
-  background: #FF5F00;
+  background: $rxcolor_accent;
   color: white;
 }

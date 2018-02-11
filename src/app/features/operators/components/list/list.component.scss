@@ -1,3 +1,5 @@
+@import "../../../../shared/styles/theme";
+
 .category-list, .operator-list {
   border-radius: 10px;
   overflow: hidden;
@@ -5,6 +7,9 @@
 
   height: 100%;
   background: white;
+
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
 }
 
 @mixin list-header() {
@@ -16,11 +21,12 @@
 h2.category-list-header {
  @include list-header();
 
-  background: #00A374;
+  background: $rxcolor_main;
 }
 
 h2.operator-list-header {
   @include list-header();
 
-  background: #0985B0;
+  //background: #DA0076;
+  background: $rxcolor_core;
 }

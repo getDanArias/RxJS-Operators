@@ -1,5 +1,5 @@
 // Application wide styles are here.
-
+@import "app/shared/styles/theme";
 @import url('https://fonts.googleapis.com/css?family=Khand|Raleway');
 
 * {
@@ -8,7 +8,7 @@
 
 body {
   margin: 2em;
-  background: #49CEF6;
+  background: $rxcolor_bg;
 }
 
 h1 {

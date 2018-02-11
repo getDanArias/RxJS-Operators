@@ -1,3 +1,5 @@
+@import "../../../../shared/styles/theme";
+
 .display-operator {
   background: white;
   margin: 2em 0;
@@ -12,7 +14,7 @@ h2.display-operator-header {
   justify-content: space-between;
   padding: 1em;
 
-  background: #FF5F00;
+  background: $rxcolor_accent;
 }
 
 .display-operator-details {
