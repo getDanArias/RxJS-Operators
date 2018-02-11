@@ -44,6 +44,11 @@ import { Category } from '../../../mock/mock-operators';
           </app-operator-display-panel>
         </div>
       </div>
+      <div class="information">
+        <div class="panel-container-small">
+          <app-events title="Recently Visited"></app-events>
+        </div>
+      </div>
     </div>
   `,
   styleUrls: ['./operators.component.scss']
