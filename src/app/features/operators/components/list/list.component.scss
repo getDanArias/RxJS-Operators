@@ -1,0 +1,26 @@
+.category-list, .operator-list {
+  border-radius: 10px;
+  overflow: hidden;
+  user-select: none;
+
+  height: 100%;
+  background: white;
+}
+
+@mixin list-header() {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+h2.category-list-header {
+ @include list-header();
+
+  background: #00A374;
+}
+
+h2.operator-list-header {
+  @include list-header();
+
+  background: #0985B0;
+}

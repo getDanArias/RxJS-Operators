@@ -5,6 +5,7 @@ import { OperatorsComponent } from './operators/operators.component';
 import { FormsModule } from '@angular/forms';
 import { AddOperatorComponent } from './components/add-operator/add-operator.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     OperatorsComponent,
     OperatorDisplayPanelComponent,
     AddOperatorComponent,
-    ListItemComponent
+    ListItemComponent,
+    ListComponent
   ],
   exports: [OperatorsComponent]
 })
