@@ -7,11 +7,13 @@ import { AddOperatorComponent } from './components/add-operator/add-operator.com
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListComponent } from './components/list/list.component';
 import { EventsComponent } from './components/events/events.component';
+import { UiElementsModule } from '../../shared/ui-elements/ui-elements.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UiElementsModule
   ],
   declarations: [
     OperatorsComponent,
