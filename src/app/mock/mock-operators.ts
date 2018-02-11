@@ -109,3 +109,9 @@ const STATE: State = {
 export const getCategories = () => {
   return STATE.categories;
 };
+
+export const getOperators = () => {
+  return STATE.operators;
+};
+
+export const getOperator = (operator) => getOperators()[operator];
