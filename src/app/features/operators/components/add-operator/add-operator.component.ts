@@ -25,9 +25,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
           <app-core-button [name]="'Reset'" [bgColor]="'A60079'"></app-core-button>
         </div>
        <div class="form-button">
-         <app-core-button [name]="'Add'" [bgColor]="'A60079'"></app-core-button>
+         <app-core-button
+           [disabled]="addOperatorForm.invalid"
+           [name]="'Add'"
+           [bgColor]="'A60079'"></app-core-button>
        </div>
       </div>
+      {{ addOperatorForm.status }}
     </div>
   `,
   styleUrls: ['./add-operator.component.scss']
