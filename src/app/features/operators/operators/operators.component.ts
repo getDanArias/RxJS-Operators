@@ -27,7 +27,7 @@ import { Category } from '../../../mock/mock-operators';
             <h2 class="category-details-header">Operators</h2>
             <div class="operator-item"
                  *ngFor="let operator of selectedCategoryOperators"
-                 [class.activeOperator]="selectedOperator === operator"
+                 [class.activeOperator]="selectedOperator.id === operator"
                  (click)="onSelectOperator($event, operator)">
               {{ operator }}
             </div>
@@ -54,8 +54,11 @@ import { Category } from '../../../mock/mock-operators';
           <div>
           </div>
         </div>
-        <div *ngIf="selectedOperator" class="display-operator">
-          <h2 class="display-operator-header">{{ selectedOperator }}</h2>
+        <div *ngIf="selectedOperator.id" class="display-operator">
+          <h2 class="display-operator-header">{{ selectedOperator.name }}</h2>
+          <div class="display-operator-details">
+            {{ selectedOperator.description }}
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +69,12 @@ export class OperatorsComponent implements OnInit {
 
   selectedCategory: Category;
   selectedCategoryOperators: string[];
-  selectedOperator = '';
+  selectedOperator = {
+    id: '',
+    name: '',
+    description: '',
+    categories: {}
+  };
   categories$;
 
   newOperator: {name: string, category: string, description: string} = {
@@ -89,8 +97,7 @@ export class OperatorsComponent implements OnInit {
   }
 
   onSelectOperator(event, operator) {
-    this.selectedOperator = operator;
-    console.log(this.selectedOperator);
+    this.selectedOperator = this.categoryDataService.getOperator(operator);
   }
 
 }
