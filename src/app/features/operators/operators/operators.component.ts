@@ -46,7 +46,7 @@ import { Category } from '../../../mock/mock-operators';
       </div>
       <div class="information">
         <div class="panel-container-small">
-          <app-events title="Recently Visited"></app-events>
+          <app-events title="Recently Visited" [headerHexColor]="'1AAC45'"></app-events>
         </div>
       </div>
     </div>

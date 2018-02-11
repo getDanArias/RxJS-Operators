@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'app-events',
   template: `
     <div>
-      <app-list listTitle="Recently Visited">
+      <app-list listTitle="Recently Visited" [headerHexColor]="headerHexColor">
         <app-list-item [name]="'map'"></app-list-item>
         <app-list-item [name]="'scan'"></app-list-item>
         <app-list-item [name]="'filter'"></app-list-item>
@@ -18,6 +18,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class EventsComponent implements OnInit {
 
   @Input() title: string;
+  @Input() headerHexColor: string;
 
   constructor() { }
 
