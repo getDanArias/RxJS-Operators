@@ -8,7 +8,7 @@ export interface Category {
   operators: CategoryOperator;
 }
 
-interface Operator {
+export interface Operator {
   id: string;
   name: string;
   description: string;
