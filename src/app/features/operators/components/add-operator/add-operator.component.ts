@@ -22,16 +22,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
       </form>
       <div class="form-controls">
         <div class="form-button">
-          <app-core-button [name]="'Reset'" [bgColor]="'A60079'"></app-core-button>
+          <app-core-button
+            (click)="reset()"
+            [name]="'Reset'"
+            [bgColor]="'A60079'"></app-core-button>
         </div>
        <div class="form-button">
          <app-core-button
+           (click)="add()"
            [disabled]="addOperatorForm.invalid"
            [name]="'Add'"
            [bgColor]="'A60079'"></app-core-button>
        </div>
       </div>
-      {{ addOperatorForm.status }}
     </div>
   `,
   styleUrls: ['./add-operator.component.scss']
@@ -55,6 +58,18 @@ export class AddOperatorComponent implements OnInit {
       category: ['', Validators.required],
       description: ['', Validators.required]
     });
+  }
+
+  add() {
+    if (this.addOperatorForm.valid) {
+      const newOperator = this.addOperatorForm.value;
+      console.log(newOperator);
+      this.reset();
+    }
+  }
+
+  reset() {
+    this.createForm();
   }
 
 }
