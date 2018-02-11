@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-operator',
@@ -8,15 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
       <div class="add-operator-form">
         <label>
           <span>Name</span>
-          <input size="1" [(ngModel)]="newOperator.name"/><br/>
+          <input [formControl]="name" size="1"/><br/>
         </label>
         <label>
           <span>Category</span>
-          <input size="1" [(ngModel)]="newOperator.category"/><br/>
+          <input [formControl]="category" size="1"/><br/>
         </label>
         <label>
           <span>Description</span>
-          <input size="1" [(ngModel)]="newOperator.description"/>
+          <input [formControl]="description" size="1"/>
         </label>
       </div>
       <div>
@@ -28,6 +29,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AddOperatorComponent implements OnInit {
 
   @Input() newOperator;
+
+  name: FormControl = new FormControl();
+  category: FormControl = new FormControl();
+  description: FormControl = new FormControl();
 
   ngOnInit() {
   }
