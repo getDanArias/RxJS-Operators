@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-operator',
@@ -41,9 +41,9 @@ export class AddOperatorComponent implements OnInit {
 
   createForm() {
     this.addOperatorForm = this.fb.group({
-      name: '',
-      category: '',
-      description: ''
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
 
