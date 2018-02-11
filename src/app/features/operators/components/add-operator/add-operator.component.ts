@@ -20,7 +20,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
           <input formControlName="description" size="1"/>
         </label>
       </form>
-      <div>
+      <div class="form-controls">
+        <div class="form-button">
+          <app-core-button [name]="'Reset'" [bgColor]="'A60079'"></app-core-button>
+        </div>
+       <div class="form-button">
+         <app-core-button [name]="'Add'" [bgColor]="'A60079'"></app-core-button>
+       </div>
       </div>
     </div>
   `,

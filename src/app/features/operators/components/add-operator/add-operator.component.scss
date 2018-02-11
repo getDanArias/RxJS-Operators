@@ -32,3 +32,15 @@
     }
   }
 }
+
+.form-controls {
+  display: flex;
+  justify-content: flex-end;
+
+  margin: 1em 0.5em;
+}
+
+.form-button {
+  width: calc(100% / 4);
+  margin-left: 2em;
+}
