@@ -7,30 +7,28 @@ import { Category } from '../../../mock/mock-operators';
   selector: 'app-operators',
   template: `
     <div>
-
       <div class="categories">
         <ng-container *ngIf="categories$ | async as categoryData">
           <div class="category-list">
             <h2 class="category-list-header">Operators Categories</h2>
-            <div
-              class="category-item"
+            <app-list-item
               *ngFor="let category of categoryData"
-              [class.active]="selectedCategory === category.id"
-              (click)="onSelectCategory($event, category)">
-              <span>{{ category.name }}</span>
-              <span>{{ getObjectKeys(category.operators).length }}</span>
-            </div>
-            <div class="category">
-            </div>
+              (click)="onSelectCategory(category)"
+              [type]="'category'"
+              [active]="selectedCategory === category.id"
+              [name]="category.name"
+              [count]="getObjectKeys(category.operators).length"
+            ></app-list-item>
           </div>
           <div *ngIf="selectedCategory" class="category-details">
             <h2 class="category-details-header">Operators</h2>
-            <div class="operator-item"
-                 *ngFor="let operator of selectedCategoryOperators"
-                 [class.activeOperator]="selectedOperator.id === operator"
-                 (click)="onSelectOperator($event, operator)">
-              {{ operator }}
-            </div>
+            <app-list-item
+              *ngFor="let operator of selectedCategoryOperators"
+              (click)="onSelectOperator(operator)"
+              [type]="'operator'"
+              [active]="selectedOperator.id === operator"
+              [name]="operator"
+            ></app-list-item>
           </div>
         </ng-container>
       </div>
@@ -74,12 +72,12 @@ export class OperatorsComponent implements OnInit {
     this.categories$ = this.categoryDataService.getCategories();
   }
 
-  onSelectCategory(event, category) {
+  onSelectCategory(category) {
     this.selectedCategory = category.id;
     this.selectedCategoryOperators = [...Array.from(Object.keys(category.operators))];
   }
 
-  onSelectOperator(event, operator) {
+  onSelectOperator(operator) {
     this.selectedOperator = this.categoryDataService.getOperator(operator);
   }
 
