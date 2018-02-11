@@ -1,25 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-operator',
   template: `
     <div class="add-operator">
       <h3>Add Operator</h3>
-      <div class="add-operator-form">
+      <form [formGroup]="addOperatorForm" novalidate class="add-operator-form">
         <label>
           <span>Name</span>
-          <input [formControl]="name" size="1"/><br/>
+          <input formControlName="name" size="1"/><br/>
         </label>
         <label>
           <span>Category</span>
-          <input [formControl]="category" size="1"/><br/>
+          <input formControlName="category" size="1"/><br/>
         </label>
         <label>
           <span>Description</span>
-          <input [formControl]="description" size="1"/>
+          <input formControlName="description" size="1"/>
         </label>
-      </div>
+      </form>
       <div>
       </div>
     </div>
@@ -30,9 +30,11 @@ export class AddOperatorComponent implements OnInit {
 
   @Input() newOperator;
 
-  name: FormControl = new FormControl();
-  category: FormControl = new FormControl();
-  description: FormControl = new FormControl();
+  addOperatorForm = new FormGroup({
+    name: new FormControl(),
+    category: new FormControl(),
+    description: new FormControl()
+  });
 
   ngOnInit() {
   }
