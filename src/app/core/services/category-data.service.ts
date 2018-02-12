@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getCategories, getOperator } from '../../mock/mock-operators';
+import { getCategories, getCategory, getOperator, insertOperator } from '../../mock/mock-operators';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toArray';
@@ -19,6 +19,10 @@ export class CategoryDataService {
   getCategories = () => Observable.from([Array.from(Object.values(this.categories))]);
 
   getOperator = (operator) => getOperator(operator);
+
+  insertOperator = (data) => insertOperator(data);
+
+  getCategory = (categoryID) => getCategory(categoryID);
 
 }
 
