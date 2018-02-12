@@ -133,3 +133,8 @@ export const getOperators = () => {
 };
 
 export const getOperator = (operator) => getOperators()[operator];
+
+export const getCategory = (categoryID) => {
+  return STATE.categories[categoryID];
+};
+
