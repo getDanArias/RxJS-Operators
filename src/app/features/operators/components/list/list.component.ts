@@ -33,7 +33,6 @@ export class ListComponent implements OnInit {
       }
 
       this.styles = {...{backgroundColor: `#${cleanHeaderHexColor}`}};
-      console.log(this.styles);
 
     }
 
