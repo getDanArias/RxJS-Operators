@@ -93,20 +93,5 @@ export class StoreService {
 
     this.subject.next(stateUpdate);
   }
-
-  // categories;
-  //
-  // constructor() {
-  //   this.categories = getCategories();
-  // }
-  //
-  // getCategories = () => Observable.from([Array.from(Object.values(this.categories))]);
-  //
-  // getOperator = (operator) => getOperator(operator);
-  //
-  // insertOperator = (data) => insertOperator(data);
-  //
-  // getCategory = (categoryID) => getCategory(categoryID);
-
 }
 
