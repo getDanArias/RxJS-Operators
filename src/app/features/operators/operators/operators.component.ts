@@ -9,11 +9,11 @@ import { RecentEventsService } from '../../../core/services/recent-events.servic
   template: `
     <div>
       <div class="categories">
-        <ng-container *ngIf="categories$ | async as categoryData">
+        <ng-container *ngIf="categories$">
           <div class="panel-container">
             <app-list listTitle="Operators Categories" kind="category">
               <app-list-item
-                *ngFor="let category of categoryData"
+                *ngFor="let category of categories$ | async"
                 (click)="onSelectCategory(category)"
                 [type]="'category'"
                 [active]="selectedCategory === category.id"
@@ -37,7 +37,7 @@ import { RecentEventsService } from '../../../core/services/recent-events.servic
       </div>
       <div class="data-interaction">
         <div class="panel-container">
-          <app-add-operator [newOperator]="newOperator"></app-add-operator>
+          <app-add-operator (refresh)="refresh()" [newOperator]="newOperator"></app-add-operator>
         </div>
         <div class="panel-container" *ngIf="selectedOperator.id">
           <app-operator-display-panel
@@ -91,6 +91,15 @@ export class OperatorsComponent implements OnInit {
   onSelectOperator(operator) {
     this.selectedOperator = this.categoryDataService.getOperator(operator);
     this.recentEventsService.addRecentlyVisited(operator);
+  }
+
+  refresh() {
+    this.categories$ = this.categoryDataService.getCategories();
+
+    if (this.selectedCategory) {
+      this.selectedCategoryOperators = [...Array.from(Object.keys(this.categoryDataService.getCategory(this.selectedCategory).operators))];
+    }
+
   }
 
 }
