@@ -1,36 +1,6 @@
-export interface CategoryOperator {
-  [key: string]: boolean;
-}
+import { State } from '../core/models/State';
 
-export interface Category {
-  id: string;
-  name: string;
-  operators: CategoryOperator;
-}
-
-export interface Operator {
-  id: string;
-  name: string;
-  description: string;
-  categories: {
-    [key: string]: boolean
-  };
-}
-
-interface CategoriesState {
-  [key: string]: Category;
-}
-
-interface OperatorsState {
-  [key: string]: Operator;
-}
-
-interface State {
-  'categories': CategoriesState;
-  'operators': OperatorsState;
-}
-
-const STATE: State = {
+export const STATE: State = {
   categories: {
     'creating': {
       id: 'creating',
@@ -122,52 +92,4 @@ const STATE: State = {
       }
     }
   }
-};
-
-export const getCategories = () => {
-  return STATE.categories;
-};
-
-export const getOperators = () => {
-  return STATE.operators;
-};
-
-export const getOperator = (operator) => getOperators()[operator];
-
-export const getCategory = (categoryID) => {
-  return STATE.categories[categoryID];
-};
-
-export const insertOperator = (data) => {
-
-  const dataModel = {
-    id: '',
-    name: '',
-    description: '',
-    categories: {}
-  };
-
-  const operatorName = data.name.toLowerCase();
-  const operatorCategory = data.category.toLowerCase();
-
-  dataModel.id  = operatorName;
-  dataModel.name  = operatorName;
-  dataModel.description = data.description;
-  dataModel.categories[operatorCategory] = true;
-
-  const category = STATE.categories[operatorCategory];
-
-  if (category) {
-    category.operators[operatorName] = true;
-  } else {
-    STATE.categories[operatorCategory] = {
-      id: operatorCategory,
-      name: operatorCategory[0].toUpperCase() + operatorCategory.substring(1),
-      operators: {
-        [operatorName]: true
-      }
-    };
-  }
-
-  STATE.operators[operatorName] = dataModel;
 };

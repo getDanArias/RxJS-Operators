@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CategoryDataService } from '../../../core/services/category-data.service';
-import { Category } from '../../../mock/mock-operators';
+import { StoreService } from '../../../core/services/store.service';
 import { RecentEventsService } from '../../../core/services/recent-events.service';
+import { Operator } from '../../../core/models/State';
 
 @Component({
   selector: 'app-operators',
@@ -13,7 +13,7 @@ import { RecentEventsService } from '../../../core/services/recent-events.servic
           <div class="panel-container">
             <app-list listTitle="Operators Categories" kind="category">
               <app-list-item
-                *ngFor="let category of categories$ | async"
+                *ngFor="let category of categories"
                 (click)="onSelectCategory(category)"
                 [type]="'category'"
                 [active]="selectedCategory === category.id"
@@ -37,7 +37,7 @@ import { RecentEventsService } from '../../../core/services/recent-events.servic
       </div>
       <div class="data-interaction">
         <div class="panel-container">
-          <app-add-operator (refresh)="refresh()" [newOperator]="newOperator"></app-add-operator>
+          <app-add-operator></app-add-operator>
         </div>
         <div class="panel-container" *ngIf="selectedOperator.id">
           <app-operator-display-panel
@@ -56,7 +56,7 @@ import { RecentEventsService } from '../../../core/services/recent-events.servic
 })
 export class OperatorsComponent implements OnInit {
 
-  selectedCategory: Category;
+  selectedCategory;
   selectedCategoryOperators: string[];
   selectedOperator = {
     id: '',
@@ -65,41 +65,31 @@ export class OperatorsComponent implements OnInit {
     categories: {}
   };
   categories$;
-
-  newOperator: {name: string, category: string, description: string} = {
-    name: ``,
-    category: ``,
-    description: ``
-  };
+  categories = [];
 
   constructor(
-    private categoryDataService: CategoryDataService,
+    private categoryDataService: StoreService,
     private recentEventsService: RecentEventsService
   ) { }
 
   getObjectKeys = (object) => object === undefined ? [] : Object.keys(object);
 
   ngOnInit() {
-    this.categories$ = this.categoryDataService.getCategories();
+    this.categories$ = this.categoryDataService.select('categories')
+      .subscribe((data) => this.categories = Array.from(Object.values(data)));
   }
 
   onSelectCategory(category) {
     this.selectedCategory = category.id;
-    this.selectedCategoryOperators = [...Array.from(Object.keys(category.operators))];
+    this.categoryDataService.getOperators(this.selectedCategory)
+      .subscribe((data) =>
+        this.selectedCategoryOperators = [...Array.from(Object.keys(data))]);
   }
 
   onSelectOperator(operator) {
-    this.selectedOperator = this.categoryDataService.getOperator(operator);
+    this.categoryDataService.getOperator(operator)
+      .subscribe((data: Operator) => this.selectedOperator = data);
     this.recentEventsService.addRecentlyVisited(operator);
-  }
-
-  refresh() {
-    this.categories$ = this.categoryDataService.getCategories();
-
-    if (this.selectedCategory) {
-      this.selectedCategoryOperators = [...Array.from(Object.keys(this.categoryDataService.getCategory(this.selectedCategory).operators))];
-    }
-
   }
 
 }

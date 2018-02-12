@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryDataService } from '../../../../core/services/category-data.service';
+import { StoreService } from '../../../../core/services/store.service';
 
 @Component({
   selector: 'app-add-operator',
@@ -42,13 +42,11 @@ import { CategoryDataService } from '../../../../core/services/category-data.ser
 })
 export class AddOperatorComponent implements OnInit {
 
-  @Input() newOperator;
-
   @Output() refresh = new EventEmitter();
 
   addOperatorForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private categoryDataService: CategoryDataService) {
+  constructor(private fb: FormBuilder, private categoryDataService: StoreService) {
     this.createForm();
   }
 
@@ -67,10 +65,8 @@ export class AddOperatorComponent implements OnInit {
     if (this.addOperatorForm.valid) {
       const newOperator = this.addOperatorForm.value;
 
-      this.categoryDataService.insertOperator(newOperator);
+      this.categoryDataService.setOperator(newOperator);
       this.reset();
-
-      this.refresh.emit();
     }
   }
 
