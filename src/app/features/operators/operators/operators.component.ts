@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { StoreService } from '../../../core/services/store.service';
 import { RecentEventsService } from '../../../core/services/recent-events.service';
-import { Operator } from '../../../core/models/State';
+import { Category, Operator } from '../../../core/models/State';
 
 @Component({
   selector: 'app-operators',
@@ -56,7 +56,7 @@ import { Operator } from '../../../core/models/State';
 })
 export class OperatorsComponent implements OnInit {
 
-  selectedCategory;
+  selectedCategory: string;
   selectedCategoryOperators: string[];
   selectedOperator: Operator = {
     id: '',
@@ -65,7 +65,7 @@ export class OperatorsComponent implements OnInit {
     categories: {}
   };
 
-  categories = [];
+  categories: Category[] = [];
 
   constructor(
     private categoryDataService: StoreService,
@@ -77,7 +77,7 @@ export class OperatorsComponent implements OnInit {
   ngOnInit() {
     this.categoryDataService.select('categories')
       .subscribe({
-        next: (categoriesData) => this.categories = Array.from(Object.values(categoriesData)),
+        next: (categoriesData: Category[]) => this.categories = Array.from(Object.values(categoriesData)),
         error: err => console.log(err)
       });
   }
@@ -86,7 +86,7 @@ export class OperatorsComponent implements OnInit {
     this.selectedCategory = category.id;
     this.categoryDataService.getOperators(this.selectedCategory)
       .subscribe({
-        next: (operatorsData) => this.selectedCategoryOperators = [...Array.from(Object.keys(operatorsData))],
+        next: (operatorsData: Operator[]) => this.selectedCategoryOperators = [...Array.from(Object.keys(operatorsData))],
         error: err => console.log(err)
       });
   }
