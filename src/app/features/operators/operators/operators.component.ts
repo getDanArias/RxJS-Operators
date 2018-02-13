@@ -9,7 +9,7 @@ import { Operator } from '../../../core/models/State';
   template: `
     <div>
       <div class="categories">
-        <ng-container *ngIf="categories$">
+        <ng-container *ngIf="categories.length > 0">
           <div class="panel-container">
             <app-list listTitle="Operators Categories" kind="category">
               <app-list-item
@@ -64,7 +64,7 @@ export class OperatorsComponent implements OnInit {
     description: '',
     categories: {}
   };
-  categories$;
+
   categories = [];
 
   constructor(
@@ -75,8 +75,11 @@ export class OperatorsComponent implements OnInit {
   getObjectKeys = (object) => object === undefined ? [] : Object.keys(object);
 
   ngOnInit() {
-    this.categories$ = this.categoryDataService.select('categories')
-      .subscribe((data) => this.categories = Array.from(Object.values(data)));
+    this.categoryDataService.select('categories')
+      .subscribe({
+        next: (categoriesData) => this.categories = Array.from(Object.values(categoriesData)),
+        error: err => console.log(err)
+      });
   }
 
   onSelectCategory(category) {
