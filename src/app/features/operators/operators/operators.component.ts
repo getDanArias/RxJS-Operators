@@ -58,7 +58,7 @@ export class OperatorsComponent implements OnInit {
 
   selectedCategory;
   selectedCategoryOperators: string[];
-  selectedOperator = {
+  selectedOperator: Operator = {
     id: '',
     name: '',
     description: '',
@@ -85,13 +85,18 @@ export class OperatorsComponent implements OnInit {
   onSelectCategory(category) {
     this.selectedCategory = category.id;
     this.categoryDataService.getOperators(this.selectedCategory)
-      .subscribe((data) =>
-        this.selectedCategoryOperators = [...Array.from(Object.keys(data))]);
+      .subscribe({
+        next: (operatorsData) => this.selectedCategoryOperators = [...Array.from(Object.keys(operatorsData))],
+        error: err => console.log(err)
+      });
   }
 
   onSelectOperator(operator) {
     this.categoryDataService.getOperator(operator)
-      .subscribe((data: Operator) => this.selectedOperator = data);
+      .subscribe({
+        next: (operatorData: Operator) => this.selectedOperator = operatorData,
+        error: err => console.log(err)
+      });
     this.recentEventsService.addRecentlyVisited(operator);
   }
 
